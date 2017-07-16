@@ -4,8 +4,8 @@ var handlebars = require('handlebars')
 var moment = require('moment')
 
 exports.create = function (options) {
-  var DIR_TEMPLATES = path.join(__dirname, '..', '..', 'templates')
-  var DIR_THEME = path.join(DIR_TEMPLATES, 'themes', options.theme)
+  var DIR_TEMPLATES = options.templatepath ? options.templatepath : path.join(__dirname, '..', '..', 'templates')
+  var DIR_THEME = options.themepath ? path.join(options.themepath, options.theme) : path.join(DIR_TEMPLATES, 'themes', options.theme)
 
   function isTemplate (filepath) {
     return path.extname(filepath) === '.hbs'

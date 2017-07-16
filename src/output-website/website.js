@@ -58,6 +58,9 @@ exports.build = function (rootAlbum, opts, callback) {
   function support (callback) {
     // copy all external JS/CSS
     var dest = path.join(opts.output, 'public')
+    var custom_public = opts.custompublic ? opts.custompublic : false;
+    if (custom_public)
+      fs.copy(custom_public, dest)
     fs.copy(DIR_PUBLIC, dest, callback)
   }
 
