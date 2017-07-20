@@ -2,8 +2,10 @@ const debug = require('debug')('thumbsup')
 
 exports.paths = function (filepath, mediaType, config) {
   var originals = false
+  var squareThumbs = true
   if (mediaType === 'image') {
     originals = config ? config.originalPhotos : false
+    squareThumbs = config ? config.squareThumbs : true
     return imageOutput(filepath, originals)
   } else if (mediaType === 'video') {
     originals = config ? config.originalVideos : false
@@ -18,13 +20,20 @@ function imageOutput (filepath, originals) {
   const output = {
     thumbnail: {
       path: 'media/thumbs/' + filepath,
-      rel: 'photo:thumbnail'
+      rel: 'photo:thumbnailSquare'
     },
     large: {
       path: 'media/large/' + filepath,
       rel: 'photo:large'
     }
   }
+  if (!squareThumbs) {
+    output.thumbnail = {
+      path: 'media/thumbs/' + filepath,
+      rel: 'photo:thumbnail'
+    }
+  }
+
   if (originals) {
     output.download = {
       path: 'media/original/' + filepath,

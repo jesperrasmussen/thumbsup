@@ -5,7 +5,8 @@ const resize = require('./resize')
 
 const ACTION_MAP = {
   'original': resize.copy,
-  'photo:thumbnail': resize.photoSquare,
+  'photo:thumbnailSquare': resize.photoSquare,
+  'photo:thumbnail': resize.photoThumb,
   'photo:large': resize.photoLarge,
   'video:thumbnail': resize.videoSquare,
   'video:poster': resize.videoLarge,

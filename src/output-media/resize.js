@@ -25,6 +25,15 @@ exports.photoSquare = function (task, callback) {
     .write(task.dest, callback)
 }
 
+exports.photoThumb = function (task, callback) {
+  gm(task.src)
+    .autoOrient()
+    .coalesce()
+    .resize(exports.sizes.thumb)
+    .quality(90)
+    .write(task.dest, callback)
+}
+
 // Large photo
 exports.photoLarge = function (task, callback) {
   gm(task.src)
