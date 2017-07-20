@@ -4,12 +4,12 @@ var async = require('async')
 var less = require('less')
 var template = require('./template')
 
-var DIR_PUBLIC = path.join(__dirname, '..', '..', 'public')
-var DIR_TEMPLATES = path.join(__dirname, '..', '..', 'templates')
-
 exports.build = function (rootAlbum, opts, callback) {
   // create the right renderer (theme, download path, etc...)
   var renderer = template.create(opts)
+
+  var DIR_TEMPLATES = opts.templatepath ? opts.templatepath : path.join(__dirname, '..', '..', 'templates')
+  var DIR_PUBLIC = path.join(__dirname, '..', '..', 'public')
 
   function website (callback) {
     // create top level gallery
